@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+
+{% block bodyblock %}
+<div class="jumbotron commentform">
+  <h1>
+NEW COMMENT
+  </h1>
+  <form class="form" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn btn-success" value="ADD">
+  </form>
+</div>
+
+<script>
+  var editor = new MediumEditor('.editable');
+</script>
+{% endblock %}

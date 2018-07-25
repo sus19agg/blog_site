@@ -1,0 +1,110 @@
+/* ########################## */
+
+@keyframes colorPipe{
+	0%{
+		color: #0066CA;
+		animation-timing-function: ease-out;
+	}
+	20%{
+		color: #003262;
+		animation-timing-function: ease-out;
+	}
+	40%{
+		color: #00417F;
+		animation-timing-function: ease-out;
+	}
+	60%{
+		color: #1B263B;
+		animation-timing-function: ease-out;
+	}
+	80%{
+		color: #415A77;
+		animation-timing-function: ease-out;
+	}
+	100%{
+		color: #0000FC;
+		animation-timing-function: ease-out;
+	}
+}
+.special{
+	animation: colorPipe 5s linear alternate-reverse infinite;
+}
+
+/* ################################ */
+
+.textfont{
+  font-family: 'Merriweather', serif;
+  font-size: 1.2em ;
+  margin-bottom: 10px;
+}
+
+.brandtext{
+  font-size: 1.5em;
+  font-family: 'Hammersmith One', sans-serif;
+}
+
+.centerstage{
+  margin-left: auto;
+  margin-right: auto;
+  border : 2px solid black;
+  background:#A8DADC;
+  padding: 3%;
+  border-radius: 30px;
+  margin-bottom: 20px;
+}
+
+.posttitle{
+  font-size: 3.3em;
+  font-family: 'Hammersmith One', sans-serif;
+}
+
+.date{
+	position: absolute;
+	right: 35px;
+	font-size: 1em;
+}
+
+
+.posttext{
+  font-family: 'Merriweather', serif;
+  font-size: 1.3em;
+	border: 2px solid black;
+	margin-bottom: 15px;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.postauthor{
+  /* position: absolute;
+  right: 0px; */
+  font-size: 1.2em;
+	font-weight: bold;
+}
+
+/* .btn-pos{
+  position: absolute;
+  right: 0px;
+} */
+
+.cmnt{
+  border: 1px solid black;
+}
+
+.commenttext{
+  font-family: 'Merriweather', serif;
+  font-size: 1.3em ;
+}
+
+.commentauthor{
+  font-size: 1em;
+  /* font-family: 'Shrikhand', cursive; */
+}
+
+.commentdate{
+  font-size: 0.8em;
+}
+
+.img{
+	height: 50px;
+  width: 50px;
+}

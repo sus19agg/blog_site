@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>BLOG</title>
+
+<!-- bootstrap -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+<!-- medium Class -->
+<script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+<!-- fonts -->
+<link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Hammersmith+One" rel="stylesheet">
+
+<!-- self made css -->
+<link rel="stylesheet" href="{% static "css/blog1.css" %}">
+
+
+  </head>
+  <body style="background:#F1FAEE;">
+
+
+
+    <nav class="navbar navbar-light textfont" style="background-color: #457B9D; margin-bottom:20px;">
+      <a class="navbar-brand brandtext" href="{% url "post_list" %}" style="color:white;">My Blog</a>
+      <a class="navbar-nav nav-link" href="{% url "about" %}" style="color:white; text-decoration:none;">About</a>
+      <a class="nav-link" href="https://wwww.github.com">
+          <img class="img" src="{% static "images/github.png" %}" alt="could not load"></a>
+      <a class="nav-link" href="https://wwww.linkedin.com">
+          <img class="img" src="{% static "images/LinkedIn-Logo-500x500.png" %}" alt="could not load"></a>
+        <!-- <ul class="navbar-nav"> -->
+          <!-- <li><a class="nav-link" href="{% url "about" %}">About</a></li> -->
+          <!-- <li><a class="nav-link" href="https://wwww.github.com">
+              <img class="img" src="{% static "images/github.png" %}" alt="could not load"></a></li> -->
+          <!-- <li><a class="nav-link" href="https://wwww.linkedin.com">
+              <img class="img" src="{% static "images/LinkedIn-Logo-500x500.png" %}" alt="could not load"></a></li> -->
+          {% if user.is_authenticated %}
+          <a class="nav-link" href="{% url "post_create" %}" style="color:white; text-decoration:none;">New Post</a>
+          <a class="nav-link" href="{% url "draft_list" %}" style="color:white; text-decoration:none;">Drafts</a>
+          <a class="nav-link" href="{% url "logout" %}" style="color:white; text-decoration:none;">Log Out</a>
+          {% endif %}
+        <!-- </ul > -->
+        <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+        <!-- <li><a class="nav-link" href="{% url "logout" %}">Log Out</a></li> -->
+        <li><a  style="color:white;">Welcome : {{ user.username }}</a></li>
+        {% else %}
+        <li><a class="nav-link" href="{% url "login" %}"><span class="fa fa-user" style="font-size:48px;"></span></a></li>
+        {% endif %}
+        <!-- </ul> -->
+    </nav>
+
+<br>
+<!-- body content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+          {% block bodyblock %}
+          {% endblock %}
+    </div>
+
+  </div>
+
+</div>
+
+
+  </body>
+</html>

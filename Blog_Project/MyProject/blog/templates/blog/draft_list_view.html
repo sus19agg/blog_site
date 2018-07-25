@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+
+{% block bodyblock %}
+
+<div class="centerstage draftlist">
+  <ul>
+  {% for p in DraftList %}
+  <li>
+  <a class="posttitle" href="{% url "post_detail" pk=p.pk %}">{{ p.title }}</a><
+  <div class="posttext">
+    <p>{{ p.text|safe|linebreaksbr|truncatechars:350 }}</p>
+  </div>
+  <div class="date special">
+    <p>Created on : {{ p.created_time|date:"SHORT_DATE_FORMAT" }}</p>
+  </div>
+  <br>
+  <br>
+  <hr>
+  </li>
+  {% endfor %}
+</ul>
+</div>
+<br>
+{% endblock %}

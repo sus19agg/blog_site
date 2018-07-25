@@ -1,0 +1,22 @@
+{% extends "blog/base.html" %}
+
+{% block bodyblock %}
+<div class="jumbotron postform">
+  <h1>
+{% if "create" in request.get_full_path %}
+NEW POST
+{% else %}
+EDIT THE POST
+{% endif %}
+  </h1>
+  <form class="form" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn btn-success" value="SAVE">
+  </form>
+</div>
+
+<script>
+  var editor = new MediumEditor('.editable');
+</script>
+{% endblock %}

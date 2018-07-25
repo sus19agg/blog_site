@@ -1,0 +1,62 @@
+{% extends "blog/base.html" %}
+
+{% block bodyblock %}
+<div class="centerstage postdetailpage">
+  <p class="posttitle special">{{ PostDetail.title }}</p>
+
+<div class="posttext">
+  <p>{{ PostDetail.text|safe|linebreaksbr }}</p>
+</div>
+
+<h4 class="postauthor special">By : <strong>{{ PostDetail.author }}</strong></h4>
+
+{% if PostDetail.published_time %}
+<div class="date special">
+  <p>Published on : {{ PostDetail.published_time }}</p>
+</div>
+{% else %}
+<a class="btn btn-lg btn-success" href="{% url "post_publish" pk=PostDetail.pk %}">Publish</a>
+{% endif %}
+
+  {% if user.is_authenticated %}
+  <a class="btn btn-warning" href="{% url "post_update" pk=PostDetail.pk %}"><span class="fa fa-edit"></span></a>
+  <a class="btn btn-danger" href="{% url "post_delete" pk=PostDetail.pk %}"><span class="fa fa-close"></span></a>
+  {% endif %}
+
+  <hr>
+  <hr>
+  <a class="btn btn-primary" href="{% url "add_comment" pk=PostDetail.pk %}">Add Comment</a>
+  <br>
+  <ul>
+
+  {% for comment in PostDetail.comments.all %}
+<li>
+  {% if user.is_authenticated or comment.approved %}
+  <div class="commenttext">
+    <p>{{ comment.text|safe|linebreaksbr }}</p>
+    </div>
+    <p class="commentauthor special">Posted by : {{ comment.author }}</p>
+    <div class="date special">
+      <p>{{ comment.created_time|date:"D d M Y" }}</p>
+    </div>
+    <!-- <div class="btn pos"> -->
+  {% if not comment.approved %}
+  <a class="btn btn-success" href="{% url "approve_comment" pk=comment.pk %}"><span class="fa fa-thumbs-up"></span></a>
+  {% endif %}
+<!-- </div> -->
+  <!-- </div> -->
+  {% endif %}
+  {% if user.is_authenticated %}
+  <a class="btn btn-danger" href="{% url "delete_comment" pk=comment.pk %}"><span class="fa fa-close"></span></a>
+  {% endif %}
+  <hr>
+</li>
+  {% empty %}
+  <p></p>
+  <p>No comments posted</p>
+
+  {% endfor %}
+</ul>
+</div>
+<br>
+{% endblock %}

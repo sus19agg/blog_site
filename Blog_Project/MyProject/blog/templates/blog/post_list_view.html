@@ -1,0 +1,26 @@
+{% extends "blog/base.html" %}
+
+{% block bodyblock %}
+  {% for post in PostList %}
+
+  <div class="centerstage">
+      <a class="special posttitle" href="{% url "post_detail" pk=post.pk %}">{{ post.title }}</a>
+    <h4 class="special">By : {{ post.author }}</h4>
+    <div class="date">
+      <h6 class="special">Published on : {{ post.published_time|date:"D d M Y" }}</h6>
+    </div>
+    <h5>
+      <a href="{% url "post_detail" pk=post.pk %}">comments : {{ post.approve_comments.count }}</a>
+    </h5>
+  </div>
+  <br>
+  <br>
+
+  {% empty %}
+  <div class="jumbotron">
+    <h1>No posts to display :(</h1>
+  </div>
+
+  {% endfor %}
+
+{% endblock %}
